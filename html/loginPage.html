@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+  </head>
+  <style>
+  #hhit{
+    text-align: center;
+  }
+  #hhit p{
+    font-family:STXingkai;
+    font-size: 34px;
+    color:#1d3986;
+  }
+  #hhitImg{
+    width: 120px;
+    height: 120px;
+    margin-top: 100px;
+    }
+  #loginList{
+    margin-top: 60px;
+    padding-left: 50px;
+  }
+  .loginBtn{
+    width: 90%;/
+    margin-left: 5%;
+    margin-top: 30px;
+    background-color: #32b16c
+  }
+  .tubiao{
+    font-size: 20px;
+    color: #1d3986
+  }
+  body{
+     background-color: #c5e9ff
+  }
+  </style>
+  <body>
+    <div id="loginPage">
+          <div id="hhit">
+          <img src="../images/hhit.jpg" id="hhitImg">
+          <p>掌上淮工</p>
+          </div>
+
+
+        <ul class="aui-list aui-form-list" id="loginList">
+            <li v-for="item in icons">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont tubiao" :class="item.icon"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input :type="item.type" :placeholder="item.info">
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="aui-btn aui-btn-success loginBtn" @click="btnClick">登陆</div>
+        <div id="btnB"></div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../js/vue.js"></script>
+
+  <script type="text/javascript">
+    new Vue({
+      el: '#loginPage',
+      data () {
+        return {
+          icons: [
+          {icon: 'aui-icon-my',type:'text',info:'username'},
+          {icon: 'aui-icon-lock',type:'password',info:'password'}
+        ],
+
+        }
+      },
+      methods: {
+         btnClick:function () {
+           location.replace('school.html')
+         }
+      },
+      mounted(){
+      
+      }
+
+    })
+  </script>
+
+  </html>

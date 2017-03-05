@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+  </head>
+  <style>
+  #map{
+  width:100%;
+  }
+  </style>
+  <body>
+    <div id="loginPage">
+       <header class="aui-bar aui-bar-nav">
+          <a class="aui-pull-left aui-btn">
+         <span class="aui-iconfont aui-icon-left" @click='btnBack'></span>
+          </a>
+        <div class="aui-title">{{title}}</div>
+        </header>
+
+    </div>
+  </body>
+  <script type="text/javascript" src="../js/vue.js"></script>
+
+  <script type="text/javascript">
+    new Vue({
+      el: '#loginPage',
+      data () {
+        return {
+           title:"新生报到"
+
+        }
+      },
+      methods: {
+         btnBack:function () {
+           location.replace('school.html')
+         },
+      },
+      mounted(){
+          
+      }
+
+    })
+  </script>
+
+  </html>

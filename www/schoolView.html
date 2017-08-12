@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="css/aui.2.0.css" />
+  </head>
+  <style>
+  body{
+    font-family:STXihei;
+  }
+  .viewPic{
+    width:33.3%;
+    margin-top:5px;
+    height: 80px;
+    float: left;
+  }
+  #schoolImg{
+    position: fixed;
+    top:150px;
+    background-color: #f5f5f5;
+  }
+  #showSchool{
+    width:100%;
+    background-color:rgba(0,0,0,0.5);;
+    position: absolute;
+    top:0;
+    z-index: 10;
+  }
+  </style>
+  <body>
+    <div id="schoolView">
+       <header class="aui-bar aui-bar-nav">
+          <a class="aui-pull-left aui-btn">
+         <span class="aui-iconfont aui-icon-left" @click='btnBack'></span>
+          </a>
+        <div class="aui-title">{{title}}</div>
+        </header>
+       <div>
+         <div class="viewPic" v-for="(item,index) in pictures" @click="showImg(index)">
+           <img :src="item.src" style="width:100%;height:80px;">
+         </div>
+       </div>
+       <div  id="showSchool" v-show="showPic" @click='closeImg'>
+       <div id="schoolImg">
+         <div><i class="aui-iconfont aui-icon-close" style="float:right;font-size:20px;margin-right:10px;" @click='closeImg'></i></div>
+         <img src="" style="width:100%;" id="bigPic">
+         <div id="miaoshu" style="text-align:center">123123</div>
+       </div>
+       </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/vue.js"></script>
+
+  <script type="text/javascript">
+    new Vue({
+      el: '#schoolView',
+      data () {
+        return {
+           title:"校园风光",
+           pictures:[
+             {src:"images/1.jpg",miaoshu:"主楼"},
+             {src:"images/2.jpg",miaoshu:"海洋楼"},
+             {src:"images/3.jpg",miaoshu:"图书馆"},
+             {src:"images/4.jpg",miaoshu:"欣园"},
+             {src:"images/5.jpg",miaoshu:"四食堂"},
+             {src:"images/6.jpg",miaoshu:"图书馆"},
+             {src:"images/7.jpg",miaoshu:"体育馆"},
+             {src:"images/8.jpg",miaoshu:"河"},
+             {src:"images/9.jpg",miaoshu:"欣园"},
+             {src:"images/10.jpg",miaoshu:"楼"},
+             {src:"images/11.jpg",miaoshu:"主楼"},
+             {src:"images/12.jpg",miaoshu:"主楼"},
+             {src:"images/13.jpg",miaoshu:"体育馆"},
+             {src:"images/14.jpg",miaoshu:"湖"},
+             {src:"images/15.jpg",miaoshu:"文通楼"},
+           ],
+           showPic:0,
+           shu:0
+        }
+      },
+      methods: {
+         btnBack:function () {
+           location.replace('school.html')
+         },
+         showImg(shu){
+           console.log(this.pictures[shu].src);
+           document.getElementById("bigPic").src=this.pictures[shu].src;
+           document.getElementById("miaoshu").innerHTML = this.pictures[shu].miaoshu;
+           this.showPic=1;
+
+         },
+         closeImg(){
+           this.showPic=0;
+         },
+     },
+      mounted(){
+        var aHeight =document.body.scrollHeight;
+        document.getElementById("showSchool").style.height=""+aHeight+"px";
+      }
+    })
+
+  </script>
+
+  </html>

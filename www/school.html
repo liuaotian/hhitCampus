@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+      <title></title>
+      <link rel="stylesheet" type="text/css" href="css/aui.2.0.css" />
+  </head>
+  <style>
+  body{
+    font-family:STXihei;
+  }
+  [v-cloak] {
+   display: none;
+ }
+  #zhulouImg{
+    border-radius: 20px;
+    margin: 5px;
+  }
+  #zhulou{
+    width: 100%;
+    height: 175px;
+
+  }
+  .card{
+    width:44%;
+    height: 80px;
+    margin-left:4%;
+    margin-top:10px;
+    float:left;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    color:#fff;
+    padding-top: 25px;
+  }
+  </style>
+  <body >
+    <div id="school">
+       <header class="aui-bar aui-bar-nav" v-cloak>{{title}}</header>
+       <div id="zhulouImg"><img src="images/zhulou.jpg" id="zhulou"/></div>
+       <div v-for="item in schoolCards">
+       <school-card  :backcolor=item.color :cardtitle=item.title :imgsrc=item.img :linkurl=item.link></school-card>
+       </div>
+       <footer class="aui-bar aui-bar-tab" id="footer">
+          <div v-for="(item,index) in footicons" class="aui-bar-tab-item" :class="{'aui-active':item.show}" v-on:click="btnActive(index)">
+            <i class="aui-iconfont" :class="item.icon"></i>
+            <div class="aui-bar-tab-label" v-cloak>{{item.name}}</div>
+          </div>
+      </footer>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/vue.js"></script>
+
+  <script type="text/javascript">
+  Vue.component('school-card', {
+      props: ['backcolor','cardtitle','imgsrc','linkurl'],
+      template: '<div class="card" v-bind:style="styleObject" @click="linkChange"><img :src=imgsrc style="vertical-align:middle;"/>{{cardtitle}}</div>',
+      data ()  {
+        return {
+            styleObject: {
+               backgroundColor:this.backcolor,
+            },
+         }
+       },
+       methods: {
+          linkChange: function () {
+           window.location.href=this.linkurl
+          // location.replace(this.linkurl)
+           //router.replace({path: this.footicons[shu].link})
+         },
+       },
+  })
+    new Vue({
+      el: '#school',
+      data () {
+        return {
+            title:"淮海工学院",
+            schoolCards:[
+              {img:"images/newStu.png",title:"新生报到",color:"#f79cad",link:"newStuPage.html"},
+              {img:"images/schoolMap.png",title:"学校地图",color:"#b9d94a",link:"schoolMap.html"},
+              {img:"images/schoolView.png",title:"校园风光",color:"#fbe496",link:"schoolView.html"},
+              {img:"images/dorm.png",title:"宿舍分布",color:"#a2dadb",link:"studentDorm.html"},
+              {img:"images/sock.png",title:"宿舍内部",color:"#b9bfbf",link:"hhitDorms.html"},
+              {img:"images/daohang.png",title:"校内导航",color:"#ffab7f",link:"navigation.html"},
+            ],
+            footicons:
+            [
+              {name: '校园', icon: 'aui-icon-home',link:'school.html',show:1},
+              {name: '生活', icon: 'aui-icon-star',link:'lifePage.html',show:0},
+              {name: '学习', icon: 'aui-icon-map',link:'studyPage.html',show:0},
+              {name: '个人', icon: 'aui-icon-my',link:'personalInfo.html',show:0}
+            ],
+        }
+      },
+      methods: {
+         btnActive: function (shu) {
+           if(shu!=0){
+              location.replace(this.footicons[shu].link)
+           }
+        },
+      },
+      mounted(){
+
+      }
+
+    })
+  </script>
+
+  </html>
